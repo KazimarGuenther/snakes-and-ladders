@@ -30,6 +30,10 @@ export default {
     const countRight = ref(false)
     const reverseRow = ref(0)
 
+    const startSL = ref([1,4,9,16,21,28,36,47,49,51,56,62,64,71,80,87,93,95,98])
+    const endSL = ref([38,14,31,6,42,84,44,26,11,67,53,19,60,91,100,24,73,75,78])
+    const currentSL = ref(0)
+
     /* 
       <summary>
       Gets the s coordinate of a tile
@@ -86,6 +90,10 @@ export default {
       }
     }
 
+    for(let i = 0; i<startSL.value.length; i++){
+        tiles.value[startSL.value[i]-1].moveTo = endSL.value[i]-1
+    }
+
     const numOfPlayers = ref(4)
     const players = ref([])
     const playerSize = ref(tileSize.value/2)
@@ -100,7 +108,6 @@ export default {
         quadrantY: playerSize.value*(Math.floor(i/3))
       })
     }
-
     return { tiles, board, rowLength, colLength, playerSize, players, tileSize}
   }
 }
